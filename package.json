@@ -1,0 +1,13 @@
+{
+  "name": "esquadrao-nerdola-apoiadores",
+  "version": "0.1.0",
+  "description": "Gerador local de tela de apoiadores para OBS",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^37.2.6"
+  }
+}
