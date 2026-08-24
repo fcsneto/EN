@@ -28,7 +28,7 @@ Eliminar a edição manual da lista de apoiadores. O operador importa o CSV, con
 5. Exporte a pasta.
 6. No OBS, crie uma **Fonte de navegador** local apontando para `index.html` dentro da pasta exportada. Use 1920×1080 e habilite a reprodução de áudio da fonte, se aplicável.
 
-## Versão 1.0
+## Versão 1.0.1
 
 Aplicativo Windows com importação local de CSV, limpeza/ordenação, painel de categorias, prévia, fundos em loop, música local e exportação para OBS.
 

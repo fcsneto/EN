@@ -1,6 +1,6 @@
 {
   "name": "esquadrao-nerdola-apoiadores",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gerador local de tela de apoiadores para OBS",
   "author": "Francisco Neto",
   "main": "src/main.js",
