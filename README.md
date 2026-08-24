@@ -26,9 +26,9 @@ Eliminar a edição manual da lista de apoiadores. O operador importa o CSV, con
 5. Exporte a pasta.
 6. No OBS, crie uma **Fonte de navegador** local apontando para `index.html` dentro da pasta exportada. Use 1920×1080 e habilite a reprodução de áudio da fonte, se aplicável.
 
-## Situação da primeira entrega
+## Versão 1.0
 
-MVP funcional em desenvolvimento: importação local de CSV, limpeza/ordenação, painel de categorias, prévia, fundos em loop, música local e exportação para OBS.
+Aplicativo Windows com importação local de CSV, limpeza/ordenação, painel de categorias, prévia, fundos em loop, música local e exportação para OBS.
 
 ## Evoluções recomendadas
 
@@ -47,4 +47,8 @@ npm install
 npm start
 ```
 
-Para criar um instalador Windows, a próxima etapa será configurar `electron-builder` e assinatura do executável, se necessária.
+Para gerar o instalador Windows:
+
+```powershell
+npm run dist
+```
