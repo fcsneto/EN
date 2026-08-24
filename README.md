@@ -15,6 +15,7 @@ Eliminar a edição manual da lista de apoiadores. O operador importa o CSV, con
 - **Filtro obrigatório:** entram somente registros cujo status é equivalente a `Apoios Ativos` / `Apoio Ativo`. O valor pode ser revisado pelo operador antes da exportação.
 - **Colunas flexíveis:** o app detecta `Apoiador`, `Recompensa` e `Status da Promessa`, e aceita os nomes alternativos `Faixa de Recompensa` e `Status atual do apoio`.
 - **Privacidade:** e-mail, endereço e valores não são exportados; somente nome e categoria.
+- **Fidelidade da lista:** cada apoio ativo é mantido na tela, inclusive nomes iguais inseridos por pessoas diferentes.
 - **Visual offline:** quatro fundos Canvas nativos, incluindo `Prismas cósmicos`, inspirado na referência. Essa escolha é mais confiável que Vanta.js para um arquivo local no OBS e evita dependências externas.
 
 ## Fluxo operacional
