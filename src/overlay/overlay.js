@@ -5,12 +5,16 @@
   const veil = document.createElement('div'); veil.className = 'veil'; document.body.append(veil);
   const content = document.createElement('main'); content.className = 'content'; content.style.fontFamily = data.fontFamily || 'Impact, Arial Black, sans-serif';
   const title = document.createElement('h1'); const names = document.createElement('div'); names.className = 'names'; content.append(title, names); document.body.append(content);
-  const categories = data.categories || []; let screen = 0;
-  function showScreen() { const category = categories[screen]; if (!category) { title.textContent = 'Nenhum apoiador selecionado'; names.replaceChildren(); return; } title.textContent = `${data.title || 'Agradecimentos especiais aos nossos apoiadores'} ${category.name}`; names.replaceChildren(); category.names.forEach(name => { const line = document.createElement('div'); line.textContent = name; names.append(line); }); screen = (screen + 1) % categories.length; }
-  showScreen(); if (categories.length > 1) setInterval(showScreen, Math.max(1, Number(data.durationSeconds) || 5) * 1000);
+  const categories = data.categories || []; let screen = 0, pages = [];
+  function titleFor(category) { return `${data.title || 'Agradecimentos especiais aos nossos apoiadores'} ${category.name}`; }
+  function buildPages() { pages = []; const contentStyle = getComputedStyle(content), namesStyle = getComputedStyle(names); const padding = parseFloat(contentStyle.paddingTop) + parseFloat(contentStyle.paddingBottom); const lineHeight = parseFloat(namesStyle.lineHeight) || parseFloat(namesStyle.fontSize) * 1.26; const columns = Number.parseInt(namesStyle.columnCount, 10) || 3;
+    categories.forEach(category => { title.textContent = titleFor(category); const titleStyle = getComputedStyle(title); const titleSpace = title.getBoundingClientRect().height + parseFloat(titleStyle.marginBottom); const linesPerColumn = Math.max(1, Math.floor((innerHeight - padding - titleSpace) / lineHeight) - 1); const pageSize = Math.max(columns, linesPerColumn * columns); for (let start = 0; start < category.names.length; start += pageSize) pages.push({ category, names: category.names.slice(start, start + pageSize) }); });
+  }
+  function showScreen() { const page = pages[screen]; if (!page) { title.textContent = 'Nenhum apoiador selecionado'; names.replaceChildren(); return; } title.textContent = titleFor(page.category); names.replaceChildren(); page.names.forEach(name => { const line = document.createElement('div'); line.textContent = name; names.append(line); }); screen = (screen + 1) % pages.length; }
+  buildPages(); showScreen(); if (pages.length > 1) setInterval(showScreen, Math.max(1, Number(data.durationSeconds) || 5) * 1000);
   if (data.audioFile) { const audio = new Audio(data.audioFile); audio.loop = true; audio.volume = .72; audio.play().catch(() => { document.body.addEventListener('click', () => audio.play(), { once: true }); }); }
   let width, height, time = 0; const random = seeded(data.background || 'prismas'); const points = Array.from({ length: 48 }, () => ({ x: random(), y: random(), vx: (random()-.5)*.00048, vy: (random()-.5)*.00048, size: random()*2+1 }));
-  function resize() { const ratio = devicePixelRatio || 1; width = innerWidth; height = innerHeight; canvas.width = width * ratio; canvas.height = height * ratio; context.setTransform(ratio,0,0,ratio,0,0); }
+  function resize() { const ratio = devicePixelRatio || 1; width = innerWidth; height = innerHeight; canvas.width = width * ratio; canvas.height = height * ratio; context.setTransform(ratio,0,0,ratio,0,0); buildPages(); screen = 0; showScreen(); }
   addEventListener('resize', resize); resize();
   function draw() { time += .008; context.clearRect(0,0,width,height); const mode = data.background || 'prismas';
     const palettes = { prismas:['#031426','#0d5471','#8560c9'], neon:['#13052d','#ed2495','#21ddff'], matrix:['#021b1b','#07a081','#7fffc3'], aurora:['#07142d','#7752e8','#19d5ca'] }; const color = data.backgroundColors?.length === 3 ? data.backgroundColors : (palettes[mode] || palettes.prismas);
