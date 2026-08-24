@@ -11,6 +11,7 @@ Eliminar a edição manual da lista de apoiadores. O operador importa o CSV, con
 - **Electron, sem servidor:** é um app Windows; o OBS lê um arquivo local. Não há login, banco de dados, API ou servidor para configurar.
 - **Exportação autocontida:** HTML, CSS, JavaScript, dados e cópia da música ficam na mesma pasta. A transmissão não depende de CDN, internet ou do app permanecer aberto.
 - **Ciclo por categoria:** cada tipo de apoio vira uma tela exclusiva. O título recebe automaticamente o tipo (por exemplo, `... APOIADORES CAPITÃO`) e a tela alterna na duração configurada, inicialmente 5 segundos.
+- **Ordem e cores:** o operador reordena manualmente as telas de categoria e escolhe as três cores que compõem o fundo animado.
 - **Filtro obrigatório:** entram somente registros cujo status é equivalente a `Apoios Ativos` / `Apoio Ativo`. O valor pode ser revisado pelo operador antes da exportação.
 - **Colunas flexíveis:** o app detecta `Apoiador`, `Recompensa` e `Status da Promessa`, e aceita os nomes alternativos `Faixa de Recompensa` e `Status atual do apoio`.
 - **Privacidade:** e-mail, endereço e valores não são exportados; somente nome e categoria.
